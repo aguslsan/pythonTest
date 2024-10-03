@@ -1,0 +1,17 @@
+transformations:
+  - name: uppercase
+    type: text
+    parameters:
+      -
+        name: column_name
+        value: "text_column"
+
+  - name: add_prefix
+    type: text
+    parameters:
+      -
+        name: column_name
+        value: "name"
+      -
+        name: prefix
+        value: "Mr. "

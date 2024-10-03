@@ -1,0 +1,35 @@
+files:
+  - file_name: in.csv
+    variable_name: main
+    schema: nombre|numero|divisor
+  - file_name: in2.txt
+    variable_name: lookup
+    schema: nombre|goles
+
+filters:
+  - variable_name: main
+    code: registro['nombre'] == 'paco'
+
+joins:
+  - input_main: main
+    input_lookup: lookup
+    key_main: nombre
+    key_lookup: nombre
+    prefix: LOOKUP_
+
+mappings:
+  - output_field_name: campo_1
+    type: direct
+    parameters:
+      input_field_name: nombre
+
+  - output_field_name: campo_2
+    type: hardcode
+    parameters:
+      value: soy_hardcode
+
+  - output_field_name: campo_3
+    type: transformation
+    parameters:
+      transformation_type: manual
+      code: registro['nombre'] + "_" +registro['nombre'] + "_" + registro['LOOKUP_goles']
